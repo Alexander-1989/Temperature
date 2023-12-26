@@ -1,9 +1,9 @@
 #include <LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-const char separators[] = { '^', '*', '#', '@', '$', '&', '~' };
-bool isConnect = false;
 String inputData;
+bool isConnect = false;
+const char separators[] = { '^', '*', '#', '@', '$', '&', '~' };
 
 void clearName()
 {
