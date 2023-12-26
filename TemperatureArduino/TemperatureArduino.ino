@@ -1,9 +1,6 @@
 #include <LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-const char* clock = "MHz";
-const char load = (char)37;
-const char temperature = (char)223;
 const char separators[] = { '^', '*', '#', '@', '$', '&', '~' };
 bool isConnect = false;
 String inputData;
@@ -31,7 +28,7 @@ void setTemp(const String &value)
 {
     clearTemp();
     lcd.setCursor(15 - value.length(), 0);
-    lcd.print(value + temperature);
+    lcd.print(value + (char)223);
 }
 
 void clearClock()
@@ -44,7 +41,7 @@ void setClock(const String &value)
 {
     clearClock();
     lcd.setCursor(0, 1);
-    lcd.print(value + clock);
+    lcd.print(value + "MHz");
 }
 
 void clearLoad()
@@ -57,7 +54,7 @@ void setLoad(const String &value)
 {
     clearLoad();
     lcd.setCursor(15 - value.length(), 1);
-    lcd.print(value + load);
+    lcd.print(value + (char)37);
 }
 
 void clearTime()
@@ -83,7 +80,7 @@ void setDate(const String &value)
 {
     clearDate();
     lcd.setCursor(3, 1);
-    lcd.print(inputData);
+    lcd.print(value);
 }
 
 void displayOn()
