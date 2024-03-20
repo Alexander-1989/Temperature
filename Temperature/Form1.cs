@@ -58,6 +58,7 @@ namespace Temperature
         {
             if (comPortsComboBox.Enabled)
             {
+                comPortsComboBox.ResetText();
                 comPortsComboBox.Items.Clear();
                 comPortsComboBox.Items.AddRange(SerialPort.GetPortNames());
             }
@@ -387,6 +388,20 @@ namespace Temperature
         private void RefreshToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             InitComPortsItems();
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            base.WndProc(ref m);
+            if (!isConnected && m.WParam.ToInt32() == Constants.USB_CONNECTED)
+            {
+                InitComPortsItems();
+                if (comPortsComboBox.Items.Contains(config.Properties.ComPortName))
+                {
+                    comPortsComboBox.Text = config.Properties.ComPortName;
+                    Connect();
+                }
+            }
         }
     }
 }
