@@ -17,6 +17,7 @@ namespace Temperature
         private static readonly string docFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "TemperatureApp");
         private static readonly string configFile = Path.Combine(docFolder, "TemperatureConfig.xml");
         private readonly string defaultComPort = "COM1";
+        private string portName = string.Empty;
         private readonly SerialPort serial = new SerialPort();
         private readonly Config config = new Config(configFile);
         private readonly Computer computer = new Computer()
@@ -290,9 +291,10 @@ namespace Temperature
             computer.Open();
             config.ReadConfig();
             Location = config.Properties.Location;
-            if (comPortsComboBox.Items.Contains(config.Properties.ComPortName))
+            portName = config.Properties.ComPortName;
+            if (comPortsComboBox.Items.Contains(portName))
             {
-                comPortsComboBox.Text = config.Properties.ComPortName;
+                comPortsComboBox.Text = portName;
             }
             minimizeOnCloseCheckBox.Checked = config.Properties.MinimizeOnClose;
             WindowState = (startMinimizeCheckBox.Checked = config.Properties.StartMinimize) ? FormWindowState.Minimized : FormWindowState.Normal;
@@ -396,9 +398,9 @@ namespace Temperature
             if (!isConnected && m.WParam.ToInt32() == Constants.USB_CONNECTED)
             {
                 InitComPortsItems();
-                if (comPortsComboBox.Items.Contains(config.Properties.ComPortName))
+                if (comPortsComboBox.Items.Contains(portName))
                 {
-                    comPortsComboBox.Text = config.Properties.ComPortName;
+                    comPortsComboBox.Text = portName;
                     Connect();
                 }
             }
