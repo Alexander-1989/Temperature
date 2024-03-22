@@ -398,7 +398,7 @@ namespace Temperature
             if (!isConnected && m.WParam.ToInt32() == Constants.USB_CONNECTED)
             {
                 InitComPortsItems();
-                if (comPortsComboBox.Items.Contains(portName))
+                if (comPortsComboBox.Items.Contains(portName) && autoConnectCheckBox.Checked)
                 {
                     comPortsComboBox.Text = portName;
                     Connect();
