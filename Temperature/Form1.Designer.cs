@@ -39,6 +39,7 @@ namespace Temperature
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.darkThemeCheckBox = new System.Windows.Forms.CheckBox();
             this.minimizeOnCloseCheckBox = new System.Windows.Forms.CheckBox();
             this.autoRunCheckBox = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -48,7 +49,6 @@ namespace Temperature
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.refreshToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.darkThemeCheckBox = new System.Windows.Forms.CheckBox();
             this.statusStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
@@ -108,7 +108,7 @@ namespace Temperature
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(3, 95);
+            this.statusStrip.Location = new System.Drawing.Point(3, 99);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(262, 22);
             this.statusStrip.TabIndex = 8;
@@ -135,6 +135,16 @@ namespace Temperature
             this.groupBox1.Size = new System.Drawing.Size(273, 108);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
+            // 
+            // darkThemeCheckBox
+            // 
+            this.darkThemeCheckBox.AutoSize = true;
+            this.darkThemeCheckBox.Location = new System.Drawing.Point(135, 83);
+            this.darkThemeCheckBox.Name = "darkThemeCheckBox";
+            this.darkThemeCheckBox.Size = new System.Drawing.Size(85, 17);
+            this.darkThemeCheckBox.TabIndex = 15;
+            this.darkThemeCheckBox.Text = "Dark Theme";
+            this.darkThemeCheckBox.UseVisualStyleBackColor = true;
             // 
             // minimizeOnCloseCheckBox
             // 
@@ -208,21 +218,11 @@ namespace Temperature
             this.refreshToolStripMenuItem1.Text = "Refresh";
             this.refreshToolStripMenuItem1.Click += new System.EventHandler(this.RefreshToolStripMenuItem1_Click);
             // 
-            // darkThemeCheckBox
-            // 
-            this.darkThemeCheckBox.AutoSize = true;
-            this.darkThemeCheckBox.Location = new System.Drawing.Point(135, 83);
-            this.darkThemeCheckBox.Name = "darkThemeCheckBox";
-            this.darkThemeCheckBox.Size = new System.Drawing.Size(85, 17);
-            this.darkThemeCheckBox.TabIndex = 15;
-            this.darkThemeCheckBox.Text = "Dark Theme";
-            this.darkThemeCheckBox.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(268, 120);
+            this.ClientSize = new System.Drawing.Size(268, 124);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip);
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.ActionBar_None;
