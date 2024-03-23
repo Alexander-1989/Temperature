@@ -6,10 +6,12 @@ using System.Windows.Forms;
 using OpenHardwareMonitor.Hardware;
 using Temperature.Service.Serializer;
 using Temperature.Service.TaskWindows;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace Temperature
 {
-    public partial class Form1 : Form
+    public partial class Form1 : MaterialForm
     {
         private int period = 0;
         private bool isMinimize = false;
@@ -20,6 +22,7 @@ namespace Temperature
         private string portName = string.Empty;
         private readonly SerialPort serial = new SerialPort();
         private readonly Config config = new Config(configFile);
+        private readonly MaterialSkinManager themeManager = MaterialSkinManager.Instance;
         private readonly Computer computer = new Computer()
         {
             CPUEnabled = true,
@@ -44,6 +47,13 @@ namespace Temperature
             button1.MouseDown += MouseDownEvent;
             groupBox1.MouseDown += MouseDownEvent;
             comPortsComboBox.MouseDown += MouseDownEvent;
+            darkThemeCheckBox.CheckedChanged += DarkThemeCheckBox_CheckedChanged;
+            themeManager.AddFormToManage(this);
+        }
+
+        private void DarkThemeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            themeManager.Theme = darkThemeCheckBox.Checked ? MaterialSkinManager.Themes.DARK : MaterialSkinManager.Themes.LIGHT;
         }
 
         private void MouseDownEvent(object sender, MouseEventArgs e)
@@ -291,6 +301,7 @@ namespace Temperature
             computer.Open();
             config.ReadConfig();
             Location = config.Properties.Location;
+            darkThemeCheckBox.Checked = config.Properties.DarkTheme;
             portName = config.Properties.ComPortName;
             if (comPortsComboBox.Items.Contains(portName))
             {
@@ -309,6 +320,7 @@ namespace Temperature
             Disconnect();
             computer.Close();
             config.Properties.Location = Location;
+            config.Properties.DarkTheme = darkThemeCheckBox.Checked;
             if (!string.IsNullOrEmpty(comPortsComboBox.Text))
             {
                 config.Properties.ComPortName = comPortsComboBox.Text;
