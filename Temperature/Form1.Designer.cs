@@ -97,7 +97,7 @@ namespace Temperature
             // autoConnectCheckBox
             // 
             this.autoConnectCheckBox.AutoSize = true;
-            this.autoConnectCheckBox.Location = new System.Drawing.Point(135, 65);
+            this.autoConnectCheckBox.Location = new System.Drawing.Point(135, 83);
             this.autoConnectCheckBox.Name = "autoConnectCheckBox";
             this.autoConnectCheckBox.Size = new System.Drawing.Size(91, 17);
             this.autoConnectCheckBox.TabIndex = 7;
@@ -110,15 +110,16 @@ namespace Temperature
             this.toolStripStatusLabel});
             this.statusStrip.Location = new System.Drawing.Point(3, 99);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(262, 22);
+            this.statusStrip.Size = new System.Drawing.Size(272, 22);
             this.statusStrip.TabIndex = 8;
             this.statusStrip.Text = "statusStrip1";
             // 
             // toolStripStatusLabel
             // 
             this.toolStripStatusLabel.BackColor = System.Drawing.Color.Red;
+            this.toolStripStatusLabel.Margin = new System.Windows.Forms.Padding(7, 0, 0, 0);
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(104, 17);
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(104, 22);
             this.toolStripStatusLabel.Text = "Status: Disconnect";
             // 
             // groupBox1
@@ -130,7 +131,7 @@ namespace Temperature
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.autoConnectCheckBox);
             this.groupBox1.Controls.Add(this.startMinimizeCheckBox);
-            this.groupBox1.Location = new System.Drawing.Point(6, 27);
+            this.groupBox1.Location = new System.Drawing.Point(10, 27);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(273, 108);
             this.groupBox1.TabIndex = 9;
@@ -139,7 +140,7 @@ namespace Temperature
             // darkThemeCheckBox
             // 
             this.darkThemeCheckBox.AutoSize = true;
-            this.darkThemeCheckBox.Location = new System.Drawing.Point(135, 83);
+            this.darkThemeCheckBox.Location = new System.Drawing.Point(135, 29);
             this.darkThemeCheckBox.Name = "darkThemeCheckBox";
             this.darkThemeCheckBox.Size = new System.Drawing.Size(85, 17);
             this.darkThemeCheckBox.TabIndex = 15;
@@ -149,7 +150,7 @@ namespace Temperature
             // minimizeOnCloseCheckBox
             // 
             this.minimizeOnCloseCheckBox.AutoSize = true;
-            this.minimizeOnCloseCheckBox.Location = new System.Drawing.Point(135, 29);
+            this.minimizeOnCloseCheckBox.Location = new System.Drawing.Point(135, 65);
             this.minimizeOnCloseCheckBox.Name = "minimizeOnCloseCheckBox";
             this.minimizeOnCloseCheckBox.Size = new System.Drawing.Size(109, 17);
             this.minimizeOnCloseCheckBox.TabIndex = 14;
@@ -222,7 +223,7 @@ namespace Temperature
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(268, 124);
+            this.ClientSize = new System.Drawing.Size(278, 124);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip);
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.ActionBar_None;
