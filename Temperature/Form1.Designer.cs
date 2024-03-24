@@ -58,7 +58,7 @@ namespace Temperature
             // comPortsComboBox
             // 
             this.comPortsComboBox.FormattingEnabled = true;
-            this.comPortsComboBox.Location = new System.Drawing.Point(6, 11);
+            this.comPortsComboBox.Location = new System.Drawing.Point(6, 14);
             this.comPortsComboBox.Name = "comPortsComboBox";
             this.comPortsComboBox.Size = new System.Drawing.Size(121, 21);
             this.comPortsComboBox.TabIndex = 2;
@@ -71,9 +71,9 @@ namespace Temperature
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(6, 38);
+            this.button1.Location = new System.Drawing.Point(6, 42);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 62);
+            this.button1.Size = new System.Drawing.Size(121, 57);
             this.button1.TabIndex = 3;
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
@@ -140,7 +140,7 @@ namespace Temperature
             // darkThemeCheckBox
             // 
             this.darkThemeCheckBox.AutoSize = true;
-            this.darkThemeCheckBox.Location = new System.Drawing.Point(135, 29);
+            this.darkThemeCheckBox.Location = new System.Drawing.Point(135, 11);
             this.darkThemeCheckBox.Name = "darkThemeCheckBox";
             this.darkThemeCheckBox.Size = new System.Drawing.Size(85, 17);
             this.darkThemeCheckBox.TabIndex = 15;
@@ -160,7 +160,7 @@ namespace Temperature
             // autoRunCheckBox
             // 
             this.autoRunCheckBox.AutoSize = true;
-            this.autoRunCheckBox.Location = new System.Drawing.Point(135, 11);
+            this.autoRunCheckBox.Location = new System.Drawing.Point(135, 29);
             this.autoRunCheckBox.Name = "autoRunCheckBox";
             this.autoRunCheckBox.Size = new System.Drawing.Size(71, 17);
             this.autoRunCheckBox.TabIndex = 13;
@@ -231,6 +231,7 @@ namespace Temperature
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(3, 24, 3, 3);
+            this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
