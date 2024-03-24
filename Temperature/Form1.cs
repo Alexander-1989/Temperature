@@ -16,8 +16,7 @@ namespace Temperature
         private int period = 0;
         private bool isMinimize = false;
         private bool isConnected = false;
-        private static readonly string docFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "TemperatureApp");
-        private static readonly string configFile = Path.Combine(docFolder, "TemperatureConfig.xml");
+        private static readonly string configFile = Application.StartupPath + "\\TemperatureConfig.xml";
         private readonly string defaultComPort = "COM1";
         private string portName = string.Empty;
         private readonly SerialPort serial = new SerialPort();
@@ -33,7 +32,6 @@ namespace Temperature
         {
             InitializeComponent();
             InitComPortsItems();
-            CheckAppFolder(docFolder);
             Icon = Properties.Resources.ICON;
             autoRunCheckBox.Checked = WindowsTask.TaskExists();
             minimizeOnCloseCheckBox.CheckedChanged += CheckBox4_CheckedChanged;
@@ -76,21 +74,6 @@ namespace Temperature
             else
             {
                 ShowErrorMessage("ComPorts Items is Disabled");
-            }
-        }
-
-        private void CheckAppFolder(string path)
-        {
-            try
-            {
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-            }
-            catch (Exception exc)
-            {
-                ShowErrorMessage(exc.Message);
             }
         }
 
