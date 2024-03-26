@@ -16,7 +16,7 @@ namespace Temperature
         private int period = 0;
         private bool isMinimize = false;
         private bool isConnected = false;
-        private static readonly string configFile = Application.StartupPath + "\\TemperatureConfig.xml";
+        private static readonly string configFile = Path.Combine(Application.StartupPath, "TemperatureConfig.xml");
         private readonly string defaultComPort = "COM1";
         private string portName = string.Empty;
         private readonly SerialPort serial = new SerialPort();
