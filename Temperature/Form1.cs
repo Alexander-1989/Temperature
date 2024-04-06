@@ -42,11 +42,22 @@ namespace Temperature
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Resize += Form1_Resize;
             MouseDown += MouseDownEvent;
+            KeyDown += Form1_KeyDown;
+            button1.KeyDown += Form1_KeyDown;
+            comPortsComboBox.KeyDown += Form1_KeyDown;
             button1.MouseDown += MouseDownEvent;
             groupBox1.MouseDown += MouseDownEvent;
             comPortsComboBox.MouseDown += MouseDownEvent;
             darkThemeCheckBox.CheckedChanged += DarkThemeCheckBox_CheckedChanged;
             themeManager.AddFormToManage(this);
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.Q)
+            {
+                Exit();
+            }
         }
 
         private void DarkThemeCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -358,11 +369,16 @@ namespace Temperature
             ChangeWindowState();
         }
 
-        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Exit()
         {
             WindowState = FormWindowState.Normal;
             isMinimize = false;
             Close();
+        }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Exit();
         }
 
         private void ConnectToolStripMenuItem_Click(object sender, EventArgs e)
@@ -389,8 +405,7 @@ namespace Temperature
 
         protected override void WndProc(ref Message m)
         {
-            base.WndProc(ref m);
-            if (!isConnected && m.WParam.ToInt32() == Constants.USB_CONNECTED)
+            if (!isConnected && (long)m.WParam == Constants.USB_CONNECTED)
             {
                 InitComPortsItems();
                 if (comPortsComboBox.Items.Contains(portName) && autoConnectCheckBox.Checked)
@@ -399,6 +414,8 @@ namespace Temperature
                     Connect();
                 }
             }
+
+            base.WndProc(ref m);
         }
     }
 }
