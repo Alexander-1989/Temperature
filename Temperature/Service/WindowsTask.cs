@@ -7,16 +7,19 @@ namespace Temperature.Service.TaskWindows
     internal class WindowsTask
     {
         private const string taskName = "TemperatureAppTask";
+        private const string taskDescription = "Start Arduino Temperature Application";
         private static readonly string applicationPath = Application.ExecutablePath;
-        private static readonly TaskService taskService = new TaskService();
 
         public static bool TaskExists()
         {
             try
             {
-                using (Task task = taskService.FindTask(taskName))
+                using (TaskService taskService = new TaskService())
                 {
-                    return task != null;
+                    using (Task task = taskService.FindTask(taskName))
+                    {
+                        return task != null;
+                    }
                 }
             }
             catch (Exception) { }
@@ -29,15 +32,18 @@ namespace Temperature.Service.TaskWindows
             {
                 if (!TaskExists())
                 {
-                    using (TaskDefinition taskDefinition = taskService.NewTask())
+                    using (TaskService taskService = new TaskService())
                     {
-                        using (LogonTrigger logon = new LogonTrigger())
+                        using (TaskDefinition taskDefinition = taskService.NewTask())
                         {
-                            taskDefinition.RegistrationInfo.Description = taskName;
-                            taskDefinition.Principal.RunLevel = TaskRunLevel.Highest;
-                            taskDefinition.Triggers.Add(logon);
-                            taskDefinition.Actions.Add(applicationPath);
-                            taskService.RootFolder.RegisterTaskDefinition(taskName, taskDefinition);
+                            using (LogonTrigger logon = new LogonTrigger())
+                            {
+                                taskDefinition.RegistrationInfo.Description = taskDescription;
+                                taskDefinition.Principal.RunLevel = TaskRunLevel.Highest;
+                                taskDefinition.Triggers.Add(logon);
+                                taskDefinition.Actions.Add(applicationPath);
+                                taskService.RootFolder.RegisterTaskDefinition(taskName, taskDefinition);
+                            }
                         }
                     }
                 }
@@ -51,7 +57,10 @@ namespace Temperature.Service.TaskWindows
             {
                 if (TaskExists())
                 {
-                    taskService.RootFolder.DeleteTask(taskName);
+                    using (TaskService taskService = new TaskService())
+                    {
+                        taskService.RootFolder.DeleteTask(taskName);
+                    }
                 }
             }
             catch (Exception) { }

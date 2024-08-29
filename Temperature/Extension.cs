@@ -11,5 +11,10 @@
         {
             return (items == null || items.Length == 0) ? defaultValue : items[items.Length - 1];
         }
+
+        public static string IsNotEmpty(this string str, string defaultValue)
+        {
+            return (str == null || str.Length == 0) ? defaultValue : str;
+        }
     }
 }

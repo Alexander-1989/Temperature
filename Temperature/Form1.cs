@@ -17,7 +17,6 @@ namespace Temperature
         private bool isMinimize = false;
         private bool isConnected = false;
         private static readonly string configFile = Path.Combine(Application.StartupPath, "TemperatureConfig.xml");
-        private readonly string defaultComPort = "COM1";
         private string portName = string.Empty;
         private readonly SerialPort serial = new SerialPort();
         private readonly Config config = new Config(configFile);
@@ -70,7 +69,6 @@ namespace Temperature
             if (e.Button == MouseButtons.Right)
             {
                 contextMenuStrip1.Show(MousePosition);
-
             }
         }
 
@@ -280,8 +278,7 @@ namespace Temperature
             {
                 if (!serial.IsOpen)
                 {
-                    string portName = comPortsComboBox.Text;
-                    serial.PortName = string.IsNullOrEmpty(portName) ? defaultComPort : portName;
+                    serial.PortName = comPortsComboBox.Text;
                 }
             }
             catch (Exception exc)
