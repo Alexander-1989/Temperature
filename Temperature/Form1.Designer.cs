@@ -33,7 +33,7 @@ namespace Temperature
             this.comPortsComboBox = new System.Windows.Forms.ComboBox();
             this.comPortTimer = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.startMinimizeCheckBox = new System.Windows.Forms.CheckBox();
             this.autoConnectCheckBox = new System.Windows.Forms.CheckBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -42,17 +42,17 @@ namespace Temperature
             this.darkThemeCheckBox = new System.Windows.Forms.CheckBox();
             this.minimizeOnCloseCheckBox = new System.Windows.Forms.CheckBox();
             this.autoRunCheckBox = new System.Windows.Forms.CheckBox();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.notifyContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notifyRefreshToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.refreshToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.formContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.formRefreshToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.contextMenuStrip.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
+            this.notifyContextMenu.SuspendLayout();
+            this.formContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // comPortsComboBox
@@ -79,10 +79,10 @@ namespace Temperature
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // notifyIcon1
+            // notifyIcon
             // 
-            this.notifyIcon1.Text = "Temperature";
-            this.notifyIcon1.Visible = true;
+            this.notifyIcon.Text = "Temperature";
+            this.notifyIcon.Visible = true;
             // 
             // startMinimizeCheckBox
             // 
@@ -167,15 +167,15 @@ namespace Temperature
             this.autoRunCheckBox.Text = "Auto Run";
             this.autoRunCheckBox.UseVisualStyleBackColor = true;
             // 
-            // contextMenuStrip
+            // notifyContextMenu
             // 
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.notifyContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showToolStripMenuItem,
             this.connectToolStripMenuItem,
-            this.refreshToolStripMenuItem,
+            this.notifyRefreshToolStripMenu,
             this.exitToolStripMenuItem});
-            this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(114, 92);
+            this.notifyContextMenu.Name = "contextMenuStrip1";
+            this.notifyContextMenu.Size = new System.Drawing.Size(114, 92);
             // 
             // showToolStripMenuItem
             // 
@@ -191,12 +191,12 @@ namespace Temperature
             this.connectToolStripMenuItem.Text = "Start";
             this.connectToolStripMenuItem.Click += new System.EventHandler(this.ConnectToolStripMenuItem_Click);
             // 
-            // refreshToolStripMenuItem
+            // notifyRefreshToolStripMenu
             // 
-            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.refreshToolStripMenuItem.Text = "Refresh";
-            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.RefreshToolStripMenuItem_Click);
+            this.notifyRefreshToolStripMenu.Name = "notifyRefreshToolStripMenu";
+            this.notifyRefreshToolStripMenu.Size = new System.Drawing.Size(113, 22);
+            this.notifyRefreshToolStripMenu.Text = "Refresh";
+            this.notifyRefreshToolStripMenu.Click += new System.EventHandler(this.RefreshToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -205,19 +205,19 @@ namespace Temperature
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
-            // contextMenuStrip1
+            // formContextMenu
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.refreshToolStripMenuItem1});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(114, 26);
+            this.formContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.formRefreshToolStripMenu});
+            this.formContextMenu.Name = "contextMenuStrip1";
+            this.formContextMenu.Size = new System.Drawing.Size(114, 26);
             // 
-            // refreshToolStripMenuItem1
+            // formRefreshToolStripMenu
             // 
-            this.refreshToolStripMenuItem1.Name = "refreshToolStripMenuItem1";
-            this.refreshToolStripMenuItem1.Size = new System.Drawing.Size(113, 22);
-            this.refreshToolStripMenuItem1.Text = "Refresh";
-            this.refreshToolStripMenuItem1.Click += new System.EventHandler(this.RefreshToolStripMenuItem1_Click);
+            this.formRefreshToolStripMenu.Name = "formRefreshToolStripMenu";
+            this.formRefreshToolStripMenu.Size = new System.Drawing.Size(113, 22);
+            this.formRefreshToolStripMenu.Text = "Refresh";
+            this.formRefreshToolStripMenu.Click += new System.EventHandler(this.RefreshToolStripMenuItem1_Click);
             // 
             // Form1
             // 
@@ -240,8 +240,8 @@ namespace Temperature
             this.statusStrip.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.contextMenuStrip.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.notifyContextMenu.ResumeLayout(false);
+            this.formContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,21 +251,21 @@ namespace Temperature
         private System.Windows.Forms.ComboBox comPortsComboBox;
         private System.Windows.Forms.Timer comPortTimer;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.CheckBox startMinimizeCheckBox;
         private System.Windows.Forms.CheckBox autoConnectCheckBox;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox autoRunCheckBox;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ContextMenuStrip notifyContextMenu;
         private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.CheckBox minimizeOnCloseCheckBox;
         private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem notifyRefreshToolStripMenu;
+        private System.Windows.Forms.ContextMenuStrip formContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem formRefreshToolStripMenu;
         private System.Windows.Forms.CheckBox darkThemeCheckBox;
     }
 }

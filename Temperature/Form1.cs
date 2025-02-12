@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO.Ports;
 using System.Windows.Forms;
 using OpenHardwareMonitor.Hardware;
+using Temperature.Service;
 using Temperature.Service.Serializer;
 using Temperature.Service.TaskWindows;
 using MaterialSkin;
@@ -34,10 +35,10 @@ namespace Temperature
             Icon = Properties.Resources.ICON;
             autoRunCheckBox.Checked = WindowsTask.TaskExists();
             minimizeOnCloseCheckBox.CheckedChanged += CheckBox4_CheckedChanged;
-            notifyIcon1.Icon = Properties.Resources.ICON;
-            notifyIcon1.BalloonTipIcon = ToolTipIcon.Error;
-            notifyIcon1.BalloonTipTitle = "Error Message:";
-            notifyIcon1.MouseDown += NotifyIcon1_MouseDown;
+            notifyIcon.Icon = Properties.Resources.ICON;
+            notifyIcon.BalloonTipIcon = ToolTipIcon.Error;
+            notifyIcon.BalloonTipTitle = "Error Message:";
+            notifyIcon.MouseDown += NotifyIcon1_MouseDown;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Resize += Form1_Resize;
             MouseDown += MouseDownEvent;
@@ -68,7 +69,7 @@ namespace Temperature
         {
             if (e.Button == MouseButtons.Right)
             {
-                contextMenuStrip1.Show(MousePosition);
+                formContextMenu.Show(MousePosition);
             }
         }
 
@@ -99,8 +100,8 @@ namespace Temperature
             }
             else
             {
-                notifyIcon1.BalloonTipText = message;
-                notifyIcon1.ShowBalloonTip(8);
+                notifyIcon.BalloonTipText = message;
+                notifyIcon.ShowBalloonTip(8);
             }
         }
 
@@ -117,7 +118,7 @@ namespace Temperature
             }
             else if (e.Button == MouseButtons.Right)
             {
-                contextMenuStrip.Show(MousePosition);
+                notifyContextMenu.Show(MousePosition);
             }
         }
 
@@ -147,8 +148,8 @@ namespace Temperature
                     button1.Text = "Stop";
                     connectToolStripMenuItem.Text = "Stop";
                     comPortsComboBox.Enabled = false;
-                    refreshToolStripMenuItem.Enabled = false;
-                    refreshToolStripMenuItem1.Enabled = false;
+                    notifyRefreshToolStripMenu.Enabled = false;
+                    formRefreshToolStripMenu.Enabled = false;
                     isConnected = true;
                     comPortTimer.Enabled = true;
                     SendData();
@@ -181,8 +182,8 @@ namespace Temperature
             toolStripStatusLabel.Text = "Status: Disconnected";
             toolStripStatusLabel.BackColor = Color.Red;
             comPortsComboBox.Enabled = true;
-            refreshToolStripMenuItem.Enabled = true;
-            refreshToolStripMenuItem1.Enabled = true;
+            notifyRefreshToolStripMenu.Enabled = true;
+            formRefreshToolStripMenu.Enabled = true;
             isConnected = false;
             comPortTimer.Enabled = false;
         }
@@ -294,13 +295,15 @@ namespace Temperature
             Location = config.Properties.Location;
             darkThemeCheckBox.Checked = config.Properties.DarkTheme;
             portName = config.Properties.ComPortName;
+            minimizeOnCloseCheckBox.Checked = config.Properties.MinimizeOnClose;
+            startMinimizeCheckBox.Checked = config.Properties.StartMinimize;
+            autoConnectCheckBox.Checked = config.Properties.AutoConnect;
+            WindowState = startMinimizeCheckBox.Checked ? FormWindowState.Minimized : FormWindowState.Normal;
             if (comPortsComboBox.Items.Contains(portName))
             {
                 comPortsComboBox.Text = portName;
             }
-            minimizeOnCloseCheckBox.Checked = config.Properties.MinimizeOnClose;
-            WindowState = (startMinimizeCheckBox.Checked = config.Properties.StartMinimize) ? FormWindowState.Minimized : FormWindowState.Normal;
-            if ((autoConnectCheckBox.Checked = config.Properties.AutoConnect) && !string.IsNullOrEmpty(comPortsComboBox.Text))
+            if (autoConnectCheckBox.Checked && !string.IsNullOrEmpty(comPortsComboBox.Text))
             {
                 Connect();
             }
@@ -368,8 +371,8 @@ namespace Temperature
 
         private void Exit()
         {
-            WindowState = FormWindowState.Normal;
             isMinimize = false;
+            WindowState = FormWindowState.Normal;
             Close();
         }
 

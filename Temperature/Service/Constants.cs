@@ -1,4 +1,4 @@
-﻿namespace Temperature
+﻿namespace Temperature.Service
 {
     public static class Constants
     {
