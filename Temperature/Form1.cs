@@ -405,13 +405,20 @@ namespace Temperature
 
         protected override void WndProc(ref Message m)
         {
-            if (!isConnected && (long)m.WParam == Constants.USB_CONNECTED)
+            if ((long)m.WParam == Constants.USB_CONNECTED && !isConnected)
             {
                 InitComPortsItems();
                 if (comPortsComboBox.Items.Contains(portName) && autoConnectCheckBox.Checked)
                 {
                     comPortsComboBox.Text = portName;
                     Connect();
+                }
+            }
+            else if ((long)m.WParam == Constants.USB_DISCONNECTED && isConnected)
+            {
+                if (!SerialPort.GetPortNames().Contains(portName))
+                {
+                    Disconnect();
                 }
             }
 
